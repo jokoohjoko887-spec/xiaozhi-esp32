@@ -22,6 +22,7 @@ jobs:
         run: |
           source $IDF_PATH/export.sh
           idf.py set-target esp32s3
+          # Mengirim flag -k dan -j2 langsung ke Ninja secara benar setelah '--'
           idf.py build -DBOARD=lcdwiki-es3c35p -- -k -j2
 
       - name: Upload Artifact
