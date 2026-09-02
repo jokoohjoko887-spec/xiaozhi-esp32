@@ -9,10 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: espressif/idf:v5.1.2
+      image: espressif/idf:v5.5.2
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
         with:
           submodules: 'recursive'
           fetch-depth: 0
@@ -21,6 +21,7 @@ jobs:
         shell: bash
         run: |
           source $IDF_PATH/export.sh
+          idf.py set-target esp32s3
           idf.py build -DBOARD=lcdwiki-es3c35p
 
       - name: Upload Artifact
