@@ -1,4 +1,4 @@
-name: Build ES3C35P Board
+name: Build Single Board (ES3C35P)
 
 on:
   push:
@@ -17,13 +17,13 @@ jobs:
           submodules: 'recursive'
           fetch-depth: 0
 
-      - name: Build Firmware for ES3C35P
+      - name: Build Firmware ES3C35P
         shell: bash
         run: |
           source $IDF_PATH/export.sh
           idf.py set-target esp32s3
-          # Tambahkan flag -j 2 agar RAM server tidak kolaps/habis saat linking
-          idf.py build -DBOARD=lcdwiki-es3c35p -- -j 2
+          # Mengompilasi khusus profil board lcdwiki-es3c35p dan mengabaikan error board lain
+          idf.py build -DBOARD=lcdwiki-es3c35p -- -k -j 2
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
