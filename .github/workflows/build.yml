@@ -22,8 +22,8 @@ jobs:
         run: |
           source $IDF_PATH/export.sh
           idf.py set-target esp32s3
-          # Menggunakan variabel lingkungan NINJA_FLAGS agar parser idf.py aman dari error opsi
-          export NINJA_FLAGS="-j2"
+          # Mengatur flag Ninja via environment variable agar aman dari error CLI parser idf.py
+          export NINJA_FLAGS="-k -j2"
           idf.py build -DBOARD=lcdwiki-es3c35p
 
       - name: Upload Artifact
